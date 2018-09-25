@@ -1,0 +1,26 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - Reserved_Words",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "stopOnEntry": false,
+            "mainClass": "code.Reserved_Words",
+            "args": "",
+            "projectName": "DFA"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - GUI_DFA",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "stopOnEntry": false,
+            "mainClass": "code.GUI_DFA",
+            "args": "",
+            "projectName": "DFA"
+        }
+    ]
+}
