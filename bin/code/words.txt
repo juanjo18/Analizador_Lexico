@@ -1,0 +1,7 @@
+PRIF, if
+PRFOR, for
+PRWHILE, while
+PRELSE, else
+PRBEGIN, inicio
+PREND, fin
+PRMAIN, main

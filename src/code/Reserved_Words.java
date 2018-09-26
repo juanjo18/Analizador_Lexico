@@ -1,5 +1,6 @@
 package code;
 import java.util.*;
+import java.io.*;
 
 public class Reserved_Words 
 {
@@ -11,18 +12,53 @@ public class Reserved_Words
     }
 
     /**
-     * Esta parte solo para dar de alta las palabras reservadas
+     * Separa las lineas por ","
+     * @param word es la line que va a separar
+     */
+    private void split(String line) 
+    {
+        String words[];
+        line = line.replaceAll("\\s","");
+        words = line.split(",");
+        reservedWords.put(words[0], words[1]);
+    }
+    
+
+    /**
+     * Lee el archivo de las palabras, pero para cargar el archivo tienes que cambiar
+     * la variable ruta, por la ruta de tu computadora
      */
     public void init() 
     {
-        reservedWords.put("PRIF", "if");
-        reservedWords.put("PRFOR", "for");
-        reservedWords.put("PRWHILE", "while");
-        reservedWords.put("PRELSE", "else");
-        reservedWords.put("PRBEGIN", "inicio");
-        reservedWords.put("PREND", "fin");
-        reservedWords.put("PRMAIN", "main");
-    }   
+        File archivo = null;
+        FileReader fr = null;
+        BufferedReader br = null;
+        String ruta = "C:/Users/Juanjo Hernandez/Documents/Compiladores/Analizador_Lexico/src/code/words.txt";
+        try {
+            archivo = new File(ruta);
+            fr = new FileReader(archivo);
+            br = new BufferedReader(fr);
+            String linea;
+            while ((linea = br.readLine()) != null)
+            {
+                split(linea);
+                //System.out.println(linea);
+            }            
+                
+
+        }catch(Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (null != fr) {
+                    fr.close();
+                }
+            } catch (Exception e2) {
+                e2.printStackTrace();
+            }
+        }
+
+    }
 
     /**
      * Verifica si la palabra esta en la tabla
@@ -40,10 +76,15 @@ public class Reserved_Words
      */
     public void showReservedWords() 
     {
-        Enumeration<String> data = reservedWords.elements();
-        while (data.hasMoreElements()) {
-            System.out.println("" + "hashtable valores: " + data.nextElement());
+        if(!reservedWords.isEmpty()){
+            Enumeration<String> data = reservedWords.elements();
+            while (data.hasMoreElements()) {
+                System.out.println("" + "hashtable valores: " + data.nextElement());
+            }
         }
+        else
+        System.out.println("No hay palabras reservadas");
+        
     }
 
     public Hashtable<String, String> getReservedWord(){ return this.reservedWords;}
@@ -51,6 +92,6 @@ public class Reserved_Words
     public static void main(String[] args) 
     {
         Reserved_Words pw = new Reserved_Words();
-        pw.showReservedWords();
+        System.out.println(pw.checkReservedWord("juan"));
     }
 }
