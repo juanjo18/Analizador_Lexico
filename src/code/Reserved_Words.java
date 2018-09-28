@@ -5,15 +5,19 @@ import java.io.*;
 public class Reserved_Words 
 {
     private Hashtable<String, String> reservedWords = new Hashtable<String, String>();
+    private String words;
 
-    public Reserved_Words()
+    
+    public Reserved_Words(String words)
     {
+        this.words = words;
         this.init();
     }
 
     /**
      * Separa las lineas por ","
      * @param word es la line que va a separar
+     * Ademas inserta las palabras en la tabla
      */
     private void split(String line) 
     {
@@ -22,42 +26,16 @@ public class Reserved_Words
         words = line.split(",");
         reservedWords.put(words[0], words[1]);
     }
-    
 
     /**
-     * Lee el archivo de las palabras, pero para cargar el archivo tienes que cambiar
-     * la variable ruta, por la ruta de tu computadora
+     * Separa la cadena en saltos de linea
+     * 
      */
     public void init() 
     {
-        File archivo = null;
-        FileReader fr = null;
-        BufferedReader br = null;
-        String ruta = "C:/Users/Juanjo Hernandez/Documents/Compiladores/Analizador_Lexico/src/code/words.txt";
-        try {
-            archivo = new File(ruta);
-            fr = new FileReader(archivo);
-            br = new BufferedReader(fr);
-            String linea;
-            while ((linea = br.readLine()) != null)
-            {
-                split(linea);
-                //System.out.println(linea);
-            }            
-                
-
-        }catch(Exception e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                if (null != fr) {
-                    fr.close();
-                }
-            } catch (Exception e2) {
-                e2.printStackTrace();
-            }
-        }
-
+        String lines[] = words.split("\n");
+        for (String line : lines)
+            split(line);
     }
 
     /**
@@ -89,9 +67,8 @@ public class Reserved_Words
 
     public Hashtable<String, String> getReservedWord(){ return this.reservedWords;}
 
-    public static void main(String[] args) 
-    {
-        Reserved_Words pw = new Reserved_Words();
-        System.out.println(pw.checkReservedWord("juan"));
-    }
+    public void setWords(String words){ this.words = words;}
+    public String getWords(){ return this.words;}
+
+
 }

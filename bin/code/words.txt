@@ -1,7 +1,5 @@
-PRIF, if
-PRFOR, for
-PRWHILE, while
-PRELSE, else
-PRBEGIN, inicio
-PREND, fin
-PRMAIN, main
+1, for
+2, begin
+3, END
+4, DO
+5, if
